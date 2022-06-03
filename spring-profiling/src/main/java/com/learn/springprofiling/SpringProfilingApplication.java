@@ -1,5 +1,7 @@
 package com.learn.springprofiling;
 
+import com.learn.springprofiling.demo.MainService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,8 +21,14 @@ public class SpringProfilingApplication implements CommandLineRunner {
 
 	@Value("${my.onlyOne}")
 	private String onlyOne;
+
+	@Autowired
+	private MainService mainService;
 	@Override
 	public void run(String... args) throws Exception {
+
+		mainService.doSomething();
+		System.out.println("-------------------------------------");
 		System.out.println("Designation : " + designation);
 		System.out.println("Profile : " + profile);
 		System.out.println("Not replaced by other profile : " + onlyOne);
